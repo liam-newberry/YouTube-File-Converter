@@ -16,6 +16,7 @@ class Main:
         self.clock = pg.time.Clock()
         pg.display.set_caption("YouTube File Converter")
         self.logo_image = pg.image.load(os.path.join(main_folder,"logo.png")).convert()
+        self.logo_image.set_colorkey(GREEN)
         self.logo_image = pg.transform.scale(self.logo_image,(70,70))
         pg.display.set_icon(self.logo_image)
     def new(self):
