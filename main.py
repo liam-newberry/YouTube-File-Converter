@@ -17,7 +17,6 @@ class Main:
         pg.display.set_caption("YouTube File Converter")
         self.logo_image = pg.image.load(os.path.join(main_folder,"logo.png")).convert()
         self.logo_image.set_colorkey(GREEN)
-        self.logo_image = pg.transform.scale(self.logo_image,(70,70))
         pg.display.set_icon(self.logo_image)
     def new(self):
         self.draw_paste = True
@@ -94,7 +93,7 @@ class Main:
             if self.now - self.invalid_url_time > 2500:
                 self.invalid_url_time = 0
                 self.invalid_url = False
-            draw_text(self.screen,"Invalid URL",(WIDTH/2,HEIGHT-10),80,RED,"midbottom")
+            draw_text(self.screen,"Invalid URL",(WIDTH/2,HEIGHT-10),FONT_SIZE,RED,"midbottom")
     def draw_file_type(self):
         text_rect = draw_text(self.screen,"MP3",(WIDTH/3,(HEIGHT/2)+3),80,BLACK,"center",draw=False)
         size = [text_rect[2]+30,text_rect[3]+10]
@@ -123,14 +122,14 @@ class Main:
         size = [text_rect[2]+30,text_rect[3]+10]
         self.do_another_rect = pg.Rect(draw_round_rect(self.screen,RED,10,
                                                        [text_rect[0]-15,(2*HEIGHT/3)-5],size))
-        draw_text(self.screen,"Do another",(WIDTH/2,(2*HEIGHT/3)+3),80,BLACK,"midtop")
+        draw_text(self.screen,"Do another",(WIDTH/2,(2*HEIGHT/3)+3),FONT_SIZE,BLACK,"midtop")
     def update(self):
         self.now = pg.time.get_ticks()
     def draw(self,loading:bool=False):
-        self.screen.fill((10,10,10))
-        draw_text(self.screen,"YouTube File Converter",[WIDTH/2,20],80,RED,"midtop")
+        self.screen.fill(PRIMARY_COLOR)
+        draw_text(self.screen,"YouTube File Converter",[WIDTH/2,20],FONT_SIZE,RED,"midtop")
         if loading:
-            draw_text(self.screen,'Loading...',[WIDTH/2, HEIGHT-10],80,
+            draw_text(self.screen,'Loading...',[WIDTH/2, HEIGHT-10],FONT_SIZE,
                                     RED,"midbottom")
         if self.draw_paste:
             self.draw_paste_button()
