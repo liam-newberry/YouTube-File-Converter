@@ -23,33 +23,34 @@ class Main:
     def events(self):
         for event in pg.event.get():
             if event.type == pg.MOUSEBUTTONUP:
-                pos = pg.mouse.get_pos()
-                if self.paste_screen in self.screen_list and self.paste_button_rect.collidepoint(pos):
-                    self.clipboard_text = pyperclip.paste()
-                    if VALID_URL not in self.clipboard_text:
-                        self.screen_list.append(self.invalid_url_message)
-                        self.invalid_url_time = self.now
-                    else:
-                        self.screen_list = [self.file_screen]
-                        continue
+                mouse_coords = pg.mouse.get_pos()
+                if self.paste_screen in self.screen_list:
+                    if self.paste_button_rect.collidepoint(mouse_coords):
+                        self.clipboard_text = pyperclip.paste()
+                        if VALID_URL not in self.clipboard_text:
+                            self.screen_list.append(self.invalid_url_message)
+                            self.invalid_url_time = self.now
+                        else:
+                            self.screen_list = [self.file_screen]
+                            continue
                 if self.file_screen in self.screen_list:
-                    if self.mp3_rect.collidepoint(pos):
+                    if self.mp3_rect.collidepoint(mouse_coords):
                         self.screen_list.append(self.loading_message)
                         self.draw()
                         ff.download_MP3(self.clipboard_text)
                         os.startfile(OUTPUT_FOLDER)
                         self.screen_list = [self.complete_screen]
                         continue
-                    elif self.mp4_rect.collidepoint(pos):
+                    elif self.mp4_rect.collidepoint(mouse_coords):
                         self.screen_list = [self.res_screen]
                         continue
                 if self.res_screen in self.screen_list:
                     res = None
-                    if self.p360_rect.collidepoint(pos):
+                    if self.p360_rect.collidepoint(mouse_coords):
                         res = "360p"
-                    elif self.p720_rect.collidepoint(pos):
+                    elif self.p720_rect.collidepoint(mouse_coords):
                         res = "720p"
-                    elif self.p1080_rect.collidepoint(pos):
+                    elif self.p1080_rect.collidepoint(mouse_coords):
                         res = "1080p"
                     if res != None:
                         self.screen_list.append(self.loading_message)
@@ -59,7 +60,7 @@ class Main:
                         self.screen_list = [self.complete_screen]
                         continue
                 if self.complete_screen in self.screen_list:
-                    if self.do_another_rect.collidepoint(pos):
+                    if self.do_another_rect.collidepoint(mouse_coords):
                         self.new()
             if event.type == pg.QUIT:
                 self.playing = False

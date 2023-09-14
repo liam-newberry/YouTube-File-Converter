@@ -24,5 +24,5 @@ TITLE = "YouTube File Converter"
 VALID_URL = "https://www.youtube.com/watch?v"
 ITAG_DICT = {"360p":18,
              "720p":22,
-             "1080p":137}
-MP3_ITAG = ITAG_DICT["360p"]
+             "1080p":137,
+             "mp3":18}

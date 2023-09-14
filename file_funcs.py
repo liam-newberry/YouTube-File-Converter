@@ -9,7 +9,7 @@ import shutil
 # Internal imports
 from settings import *
 
-def combine_audio(video_path:str,audio_path:str):
+def add_audio_MP4(video_path:str,audio_path:str):
     video_clip = VideoFileClip(video_path)
     audio_clip = AudioFileClip(audio_path)
     video_clip_with_audio = video_clip.set_audio(audio_clip)
@@ -25,27 +25,26 @@ def download_1080p(url:str):
     mp3_file = filename[:-4] + ".mp3"
     vidpath = os.path.abspath(filename)
     audpath = os.path.abspath(mp3_file)
-    combine_audio(vidpath,audpath)
+    add_audio_MP4(vidpath,audpath)
     if os.path.exists(mp3_file):
         os.remove(mp3_file)
     if os.path.exists(filename):
         os.remove(filename)
     cur_path = MAIN_FOLDER + "/" + filename
-    dest_path = MAIN_FOLDER + "/Outputs"
     temp_path = os.path.abspath("new.mp4")
-    final_path = dest_path + "/" + filename
+    final_path = OUTPUT_FOLDER + "/" + filename
     os.rename(temp_path,cur_path)
     if not os.path.exists("Outputs"):
         os.makedirs("Outputs")
     if not os.path.exists(final_path):
-        shutil.move(cur_path,dest_path)
+        shutil.move(cur_path,OUTPUT_FOLDER)
     else:
         os.remove(final_path)
-        shutil.move(cur_path,dest_path)
+        shutil.move(cur_path,OUTPUT_FOLDER)
 
 def download_MP3(url:str,move:bool=True):
     video = pytube.YouTube(url)
-    stream = video.streams.get_by_itag(MP3_ITAG)
+    stream = video.streams.get_by_itag(ITAG_DICT["mp3"])
     stream.download()
     filename = stream.default_filename
     clip = VideoFileClip(filename)
@@ -58,9 +57,8 @@ def download_MP3(url:str,move:bool=True):
         if not os.path.exists("Outputs"):
             os.makedirs("Outputs")
         cur_path = MAIN_FOLDER + "/" + mp3_file
-        dest_path = MAIN_FOLDER + "/Outputs"
-        if not os.path.exists(dest_path + "/" + mp3_file):
-            shutil.move(cur_path,dest_path)
+        if not os.path.exists(OUTPUT_FOLDER + "/" + mp3_file):
+            shutil.move(cur_path,OUTPUT_FOLDER)
         else:
             os.remove(mp3_file)
         return mp3_file
