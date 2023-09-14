@@ -1,4 +1,4 @@
-# YouTube-File-Converter
+# YouTube File Converter
 
 ## About
 This project is a Windows GUI for downloading mp3 and mp4 files from YouTube. This project is written 100% in Python and is based on the pygame, pytube, and moviepy modules.
@@ -10,9 +10,14 @@ This project is a Windows GUI for downloading mp3 and mp4 files from YouTube. Th
    - pip install pygame
    - pip install pyperclip
    - pip install pytube
+* Download the zip file from GitHub and extract the files
 * Run the file in an IDE or a command prompt window for the app folder and type the command:
    - python main.py
 
 ## Sources
 * [https://github.com/NeuralNine/youtube-downloader-converter](https://github.com/NeuralNine/youtube-downloader-converter)
 * [https://mlhive.com/2023/04/merge-audio-and-video-files-using-python](https://mlhive.com/2023/04/merge-audio-and-video-files-using-python)
+
+## License
+* This project is protected using the MIT License that is in the folder
+* If you are curious, this [article](https://snyk.io/learn/what-is-mit-license/) breaks down the meaning of it
