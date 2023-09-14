@@ -10,7 +10,8 @@ This project is a Windows GUI for downloading mp3 and mp4 files from YouTube. Th
    - pip install pygame
    - pip install pyperclip
    - pip install pytube
-* Run the file in an IDE or a command prompt window for the app folder and type the command: python main.py
+* Run the file in an IDE or a command prompt window for the app folder and type the command:
+   - python main.py
 
 ## Sources
 * [https://github.com/NeuralNine/youtube-downloader-converter](https://github.com/NeuralNine/youtube-downloader-converter)
