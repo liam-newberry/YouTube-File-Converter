@@ -5,6 +5,14 @@ import pygame as pg
 # Internal imports
 from settings import *
 
+def draw_button(object:object,text:str,coordinates:tuple):
+    text_rect = draw_text(object.screen,text,coordinates,FONT_SIZE,BLACK,"center",draw=False)
+    size = [text_rect[2]+30,text_rect[3]+10]
+    button_rect = pg.Rect(draw_round_rect(object.screen,RED,BUTTON_ROUNDNESS,
+                                          [text_rect[0]-15,coordinates[1]-8],size))
+    draw_text(object.screen,text,coordinates,FONT_SIZE,BLACK,"midtop")
+    return button_rect
+
 def draw_round_rect(surface:object,color:tuple,radius:int,coordinates:list,size:list):
     tl_coords = [coordinates[0]+radius,coordinates[1]+radius]
     tl_circ = pg.draw.circle(surface,color,tl_coords,radius)
